@@ -1,0 +1,2 @@
+0
+c:\program files (x86)\altus\mastertool iec\compile\controle de nível com seletora automático e manual e sensores digitaisvis.txt
