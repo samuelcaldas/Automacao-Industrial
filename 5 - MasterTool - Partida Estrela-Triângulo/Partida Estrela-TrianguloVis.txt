@@ -1,2 +1,2 @@
-0
+107212
 c:\program files (x86)\altus\mastertool iec\compile\partida estrela-triangulovis.txt
