@@ -13,31 +13,13 @@ VAR
 	L2 AT %QX1.4: BOOL; (* Lampada amarela: Emergência acionada ou RT1 atuado *)
 	L3 AT %QX1.5: BOOL; (* Lampada vermelha: Lâmpada piscando durante partida em estrela e lâmpada acesa continuamente com motor fechado em triângulo *)
 
-	Partida: BOOL; (* Variável auxiliar para indicar o início da partida *)
-	Estrela: BOOL; (* Variável auxiliar para indicar o fechamento em estrela *)
+	Estado: BOOL; (* Variável auxiliar para indicar o início da partida *)
 	Triangulo: BOOL; (* Variável auxiliar para indicar o fechamento em triângulo *)
+	Erro: BOOL; (* Variável auxiliar para indicar o início da partida *)
 
-	T : TIME := T#3s; (* Tempo de comutacao de estrela para triangulo *)
+	T1 : TIME := T#3s; (* Tempo de comutacao de estrela para triangulo *)
 	TPartida: TON; (* Temporizador para comutar o fechamento do motor para triângulo *)
-	TLED: TON; (* Temporizador para piscar lampada vermelha *)
+	T2 : TIME := T#500ms; (* Tempo piscar o LED de comutação estrela triangulo *)
+	TLED1: TON; (* Temporizador para piscar lampada vermelha *)
+	TLED2: TON; (* Temporizador para piscar lampada vermelha *)
 END_VAR
-
-(* Fazer o selo de acionamento do botão de partida *)
-Partida := Liga OR (Partida AND NOT Desliga AND NOT Emergencia AND NOT RT1);
-
-(* Fazer o intertravamento entre os contatores K3 e K6 *)
-Estrela := Partida AND NOT Triangulo;
-Triangulo := TPartida.Q;
-
-(* Acionar os contatores conforme as condições de partida *)
-K1 := Estrela OR Triangulo;
-K3 := Triangulo;
-K6 := Estrela;
-
-(* Acionar o temporizador para comutar o fechamento do motor para triângulo após 3 segundos *)
-TPartida(IN := Estrela, PT := T);
-
-(* Acionar as lâmpadas conforme as condições de sinalização *)
-L1 := NOT Partida;
-L2 := Emergencia OR RT1;
-L3 := Partida;
