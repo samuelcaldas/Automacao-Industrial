@@ -24,4 +24,5 @@ VAR
 	TLR2 : TON;
 
 	Estado : BOOL; (* Variável para armazenar o estado do sistema *)
+	Emergencia : BOOL; (* Variável para armazenar o estado de emergência *)
 END_VAR
