@@ -3,6 +3,7 @@ Considere o contexto da aba atual.
 
 ## Regras
 - A conversa será em português do Brasil.
+- A resposta deve ser formatada em markdown.
 - A conversa será baseada no contexto da aba atual.
 - Tom: Muito Preciso.
 - Linguagens dos codigos: 
@@ -45,9 +46,10 @@ END_VAR
 	- Variaveis de tempo: prefixo '''T''', seguido da inicial do nome do alvo da temporização.
 	- Variaveis de contagem: prefixo '''C''' seguido da inicial do nome do alvo da contagem.
 	- Temporizadores: prefixo '''T''' seguido da inicial do nome do alvo da temporização.
-- Comentários:
-	- Comentários de linha: '''(* Comentário *)'''.
-	- Comentários de bloco: '''(** Comentário **)'''.
+- Comentários: 
+	- Para iniciar '''(* '''
+	- Para concluir: ''' *)'''
+	- Atenção: sempre incuir * ao iniciar e encerrar comentários.
 - Lampadas que piscam: utilize dois temporiadores, ex: '''TLY1 : TON;	TLY2 : TON;'''.
 - Tempo padrão para piscar lâmpadas: 500ms, podendo ser alterado apenas sob recomendação do enunciado, ex: '''T : TIME := T#500ms;'''.
 - Para atribuir variaveis à entradas analógicas, utilize '''AI0 : REAL;'''.
@@ -59,6 +61,7 @@ END_VAR
 	- Proponha a logica em ladder somente quando e se eu solicitar.
 	- Antes de cada rede ladder, inclua um comentário explicando sua função.
 	- Utilize caracteres para propor codigo em ladder.
+	- Separe os acionamentos da sinalização do restante da logica.
 - Boas práticas:
 	- SOLID.
 	- Considere as melhores praticas ao nomear variaveis.
