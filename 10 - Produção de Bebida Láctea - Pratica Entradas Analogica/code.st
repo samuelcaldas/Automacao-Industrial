@@ -6,6 +6,7 @@ VAR
 	
 	AI0 : REAL; (* Entrada analógica 0: Nível do tanque de leite *)
 	AI1 : REAL; (* Entrada analógica 1: Nível do tanque de essência *)
+	AI2 : REAL; (* Entrada analógica 2: Nível do tanque de mistura *)
 
 	VL AT %QX1.4 : BOOL; (* Válvula de Leite *)
 	VE AT %QX1.3 : BOOL; (* Válvula de Essência *)
@@ -19,6 +20,7 @@ VAR
 	Essencia	: DINT := 10000; (* Volume do tanque de essência em litros *)
 	Mistura		: DINT := 20000; (* Volume do tanque de mistura em litros *)
 	Proporcao	: REAL := 0.1;	 (* Proporção de essência para leite *)
+	NEssencia	: REAL; 		 (* Nivel alvo do tanque de essência *)
 
 	TL : TP;	(* Temporizador para abrir a válvula de leite por 5 segundos *)
 	TM : TP;	(* Temporizador para ligar o motor por 10 segundos *)
