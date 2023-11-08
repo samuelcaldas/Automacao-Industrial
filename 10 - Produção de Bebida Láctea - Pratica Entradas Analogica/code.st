@@ -1,29 +1,28 @@
 PROGRAM PLC_PRG
 VAR
-	Desliga AT %IX0.0 : BOOL; (* Botão B2 - NF: Desliga o controle *)
-	Liga AT %IX0.1 : BOOL; (* Botão B3 - NA: Liga o controle *)
-	Canal0 AT %IW0 : INT;  (* Nível do tanque de leite *)
-	Canal1 AT %IW1 : INT;  (* Nível do tanque de essência *)
-	Canal2 AT %IW2 : INT;  (* Nível do tanque de mistura *)
+	Desliga	AT %IX0.0 : BOOL; (* Botão B2 - NF: Desliga o controle *)
+	Liga	AT %IX0.1 : BOOL; (* Botão B3 - NA: Liga o controle *)
+	Estado : BOOL := FALSE;	  (* Variável para armazenar o estado do sistema *)
 
-	L1 AT %QX1.0 : BOOL; (* Lâmpada verde: Controle ligado *)
-	L2 AT %QX1.2 : BOOL; (* Lâmpada vermelha: Controle desligado *)
+	AI0 : REAL;  (* Nível do tanque de leite *)
+	AI1 : REAL;  (* Nível do tanque de essência *)
+	AI2 : REAL;  (* Nível do tanque de mistura *)
 	
     VL AT %QX1.4 : BOOL; (* Válvula de leite *)
 	VE AT %QX1.3 : BOOL; (* Válvula de essência *)
 	VS AT %QX1.5 : BOOL; (* Válvula de saída *)
 	M  AT %QX1.6 : BOOL; (* Motor do tanque de mistura *)
 
-	Leite : INT := 10000; (* Capacidade do tanque de leite em litros *)
-	Essencia : INT := 1000; (* Capacidade do tanque de essência em litros *)
-	Mistura : INT := 20000; (* Capacidade do tanque de mistura em litros *)
-	Proporcao : INT := 10; (* Proporção de leite para essência *)
+	L1 AT %QX1.0 : BOOL; (* Lâmpada verde: Controle ligado *)
+	L2 AT %QX1.2 : BOOL; (* Lâmpada vermelha: Controle desligado *)
+
+	Leite 		: INT := 10000; (* Capacidade do tanque de leite em litros *)
+	Essencia 	: INT := 1000;  (* Capacidade do tanque de essência em litros *)
+	Mistura 	: INT := 20000; (* Capacidade do tanque de mistura em litros *)
+	Proporcao 	: INT := 10; 	(* Proporção de leite para essência *)
 
 	T1 : TON; (* Temporizador para abrir a válvula de leite por 5 segundos *)
 	T2 : TON; (* Temporizador para ligar o motor por 10 segundos *)
-
-	Estado : BOOL; 		(* Variável para armazenar o estado do sistema *)
-	Emergencia : BOOL;  (* Variável para armazenar o estado de emergência *)
 END_VAR
 
 (* Lógica para ligar e desligar o controle *)
